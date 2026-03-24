@@ -315,9 +315,6 @@
 <!-- ─── NAVBAR ─── -->
 <header id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/img/logo1_white.png" alt="Enterprise Cloud Solutions Group">
-    </a>
     <ul class="nav-links">
       <li><a href="index.html" data-en="Home" data-es="Inicio">Home</a></li>
       <li><a href="managed-services.html" data-en="Managed Services" data-es="Servicios Administrados">Managed Services</a></li>
@@ -334,12 +331,9 @@
         <i class="fas fa-envelope"></i>
         <span data-en="Contact Sales" data-es="Contactar Ventas">Contact Sales</span>
       </a>
-      <button id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </div>
-  <div id="mobile-menu">
+  <div id="mobile-menu" style="display:none!important;">
     <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
     <a href="managed-services.html" data-en="Managed Services" data-es="Servicios Administrados">Managed Services</a>
     <a href="cloud-services.html" data-en="Cloud Services" data-es="Servicios en la Nube">Cloud Services</a>
@@ -359,6 +353,9 @@
 <!-- ─── HERO ─── -->
 <section class="page-hero">
   <div class="hero-inner">
+    <div class="hero-logo" style="margin-bottom:28px;">
+      <a href="index.html"><img src="assets/img/logo1_white.png" alt="Enterprise Cloud Solutions Group" style="height:72px; display:block;"></a>
+    </div>
     <div class="hero-tag"><i class="fas fa-cloud"></i> <span data-en="Microsoft Cloud Partner" data-es="Partner de Microsoft Cloud">Microsoft Cloud Partner</span></div>
     <h1><em data-en="Cloud Services" data-es="Servicios en la Nube">Cloud Services</em><br><span data-en="that Drive Results" data-es="que Impulsan Resultados">that Drive Results</span></h1>
     <p class="lead" data-en="We design, implement, and manage end-to-end Microsoft cloud solutions — Azure, Microsoft 365, SharePoint, Teams, and Email Security — so your business stays agile, secure, and productive." data-es="Diseñamos, implementamos y administramos soluciones de nube Microsoft de extremo a extremo — Azure, Microsoft 365, SharePoint, Teams y Seguridad de Correo — para que su empresa sea ágil, segura y productiva.">We design, implement, and manage end-to-end Microsoft cloud solutions — Azure, Microsoft 365, SharePoint, Teams, and Email Security — so your business stays agile, secure, and productive.</p>
@@ -648,7 +645,7 @@
       <div class="footer-col">
         <h4>Enterprise Cloud Solutions Group LLC</h4>
         <p>26 Belden Ave, Norwalk, CT</p>
-        <p>info@ecsgtech.com</p>
+        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e28b8c848da2878191859687818acc818d8f">[email&#160;protected]</a></p>
         <p>www.ecsgtech.com</p>
       </div>
       <div class="footer-col">
@@ -673,36 +670,27 @@
 
 <script>
 (function () {
-  var currentLang = 'en';
-
   function applyLang(lang) {
-    currentLang = lang;
     document.querySelectorAll('[data-en]').forEach(function (el) {
-      el.textContent = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      var text = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      if (!text) return;
+      if (el.children.length === 0) {
+        el.textContent = text;
+      } else {
+        Array.from(el.childNodes).forEach(function(node) {
+          if (node.nodeType === 3 && node.textContent.trim() !== '') {
+            node.textContent = text;
+          }
+        });
+      }
     });
-    ['btnEN', 'btnEN2'].forEach(function (id) { var b = document.getElementById(id); if (b) b.classList.toggle('active', lang === 'en'); });
-    ['btnES', 'btnES2'].forEach(function (id) { var b = document.getElementById(id); if (b) b.classList.toggle('active', lang === 'es'); });
+    ['btnEN', 'btnEN2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.classList.toggle('active', lang==='en'); });
+    ['btnES', 'btnES2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.classList.toggle('active', lang==='es'); });
     document.documentElement.lang = lang;
     try { localStorage.setItem('ecsg_lang', lang); } catch (e) {}
   }
-
-  ['btnEN', 'btnEN2'].forEach(function (id) {
-    var b = document.getElementById(id);
-    if (b) b.addEventListener('click', function () { applyLang('en'); });
-  });
-  ['btnES', 'btnES2'].forEach(function (id) {
-    var b = document.getElementById(id);
-    if (b) b.addEventListener('click', function () { applyLang('es'); });
-  });
-
-  try { var s = localStorage.getItem('ecsg_lang'); if (s === 'es') applyLang('es'); } catch (e) {}
-
-  var ham = document.getElementById('hamburger');
-  var mob = document.getElementById('mobile-menu');
-  if (ham && mob) {
-    ham.addEventListener('click', function () { mob.classList.toggle('open'); });
-  }
+  ['btnEN', 'btnEN2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.addEventListener('click', function(){ applyLang('en'); }); });
+  ['btnES', 'btnES2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.addEventListener('click', function(){ applyLang('es'); }); });
+  try { var s=localStorage.getItem('ecsg_lang'); if(s==='es') applyLang('es'); } catch(e) {}
 })();
 </script>
-</body>
-</html>
