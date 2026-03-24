@@ -867,27 +867,29 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function () {
   function applyLang(lang) {
     document.querySelectorAll('[data-en]').forEach(function (el) {
-      el.textContent = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      var text = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      if (!text) return;
+      if (el.children.length === 0) {
+        el.textContent = text;
+      } else {
+        Array.from(el.childNodes).forEach(function(node) {
+          if (node.nodeType === 3 && node.textContent.trim() !== '') {
+            node.textContent = text;
+          }
+        });
+      }
     });
-    ['btnEN','btnEN2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.classList.toggle('active', lang==='en'); });
-    ['btnES','btnES2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.classList.toggle('active', lang==='es'); });
+    ['btnEN', 'btnEN2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.classList.toggle('active', lang==='en'); });
+    ['btnES', 'btnES2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.classList.toggle('active', lang==='es'); });
     document.documentElement.lang = lang;
     try { localStorage.setItem('ecsg_lang', lang); } catch (e) {}
   }
-
-  ['btnEN','btnEN2'].forEach(function(id){
-    var b = document.getElementById(id);
-    if (b) b.addEventListener('click', function(){ applyLang('en'); });
-  });
-  ['btnES','btnES2'].forEach(function(id){
-    var b = document.getElementById(id);
-    if (b) b.addEventListener('click', function(){ applyLang('es'); });
-  });
-
-  try { var s = localStorage.getItem('ecsg_lang'); if (s === 'es') applyLang('es'); } catch (e) {}
-
-  var ham = 
+  ['btnEN', 'btnEN2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.addEventListener('click', function(){ applyLang('en'); }); });
+  ['btnES', 'btnES2'].forEach(function(id){ var b=document.getElementById(id); if(b) b.addEventListener('click', function(){ applyLang('es'); }); });
+  try { var s=localStorage.getItem('ecsg_lang'); if(s==='es') applyLang('es'); } catch(e) {}
+})();
+</script>
