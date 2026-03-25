@@ -125,6 +125,10 @@
   padding-top: 0!important;
 }
 
+.pe-0 {
+  padding-right: 0!important;
+}
+
 .pe-6 {
   padding-right: 4.5rem !important;
 }
@@ -135,6 +139,10 @@
 
 .pe-10 {
   padding-right: 10.5rem !important;
+}
+
+.ps-0 {
+  padding-left: 0!important;
 }
 
 @media (min-width:992px) {
