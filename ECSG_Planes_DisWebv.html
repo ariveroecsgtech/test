@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Planes de Diseño Web — Enterprise Cloud Solutions Group LLC</title>
+<title>Web Design Plans — Enterprise Cloud Solutions Group LLC</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -497,7 +497,7 @@
     </div>
     <div class="header-contact">
       26 Belden Ave, Norwalk, CT<br>
-      info@ecsgtech.com<br>
+      <a href="mailto:info@ecsgtech.com">info@ecsgtech.com</a><br>
       <a href="https://www.ecsgtech.com">www.ecsgtech.com</a>
     </div>
   </div>
@@ -654,7 +654,7 @@
         <a class="plan-select-btn pro" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=web-pro">Plan Pro</a>
         <a class="plan-select-btn ent" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=web-enterprise">Plan Enterprise</a>
       </div>
-      <p class="cta-note">¿Tienes preguntas? Escríbenos a info@ecsgtech.com — respondemos en menos de 1 día hábil.</p>
+      <p class="cta-note">¿Tienes preguntas? Escríbenos a <a href="mailto:sales@ecsgtech.com">sales@ecsgtech.com</a> — respondemos en menos de 1 día hábil.</p>
     </div>
 
   </div>
@@ -811,7 +811,7 @@
         <a class="plan-select-btn pro" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=web-pro">Pro Plan</a>
         <a class="plan-select-btn ent" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=web-enterprise">Enterprise Plan</a>
       </div>
-      <p class="cta-note">Have questions? Email us at info@ecsgtech.com — we respond within 1 business day.</p>
+      <p class="cta-note">Have questions? Email us at <a href="mailto:sales@ecsgtech.com">sales@ecsgtech.com</a> — we respond within 1 business day.</p>
     </div>
 
   </div>
@@ -823,7 +823,7 @@
   <div class="footer-text">
     <strong style="color:rgba(255,255,255,0.7)">Enterprise Cloud Solutions Group LLC</strong><br>
     26 Belden Ave, Norwalk, CT 06850 &nbsp;·&nbsp;
-    info@ecsgtech.com &nbsp;·&nbsp;
+    <a href="mailto:info@ecsgtech.com">info@ecsgtech.com</a> &nbsp;·&nbsp;
     <a href="https://www.ecsgtech.com">www.ecsgtech.com</a>
   </div>
   <div class="footer-right">
@@ -831,8 +831,6 @@
     © 2025 ECSG LLC. All rights reserved.
   </div>
 </footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-st
 <script>
 (function() {
   function switchLang(lang) {
@@ -843,20 +841,21 @@
     document.querySelectorAll('.lang-btn[data-lang="' + lang + '"]').forEach(function(b) { b.classList.add('active'); });
     var sub = document.getElementById('hdr-sub');
     if (sub) {
-      sub.textContent = lang === 'en'
-        ? 'Managed IT · Cloud · Cybersecurity · Projects'
-        : 'TI Gestionada · Cloud · Ciberseguridad · Proyectos';
+      sub.textContent = lang === 'es'
+        ? 'IT Administrado · Nube · Ciberseguridad · Proyectos'
+        : 'Managed IT · Cloud · Cybersecurity · Projects';
     }
-    var title = document.querySelector('.header-title');
-    if (title) {
-      title.innerHTML = lang === 'en'
-        ? 'Web Design <span>Plans</span>'
-        : 'Planes de <span>Diseño Web</span>';
-    }
+    document.documentElement.lang = lang;
   }
-  document.querySelectorAll('.lang-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      switchLang(this.getAttribute('data-lang'));
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Default: English
+    switchLang('en');
+
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        switchLang(this.getAttribute('data-lang'));
+      });
     });
   });
 })();
