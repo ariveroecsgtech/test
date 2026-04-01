@@ -89,6 +89,34 @@
     .mobile-lang { display: flex; gap: 8px; }
     .mobile-lang button { border: 1px solid rgba(255,255,255,0.3); background: transparent; color: rgba(255,255,255,0.7); padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: var(--transition); }
     .mobile-lang button.active { background: #fff; color: var(--navy); border-color: #fff; }
+<!-- Hamburger button (mobile only) -->
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<!-- Mobile dropdown menu -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="managed-services.html">Managed Services</a>
+  <a href="cloud-services.html">Cloud Services</a>
+  <a href="cybersecurity.html" class="active-page">Cybersecurity</a>
+  <a href="ECSG_About.html">About Us</a>
+  <div class="nav-mobile-bottom">
+    <div class="nav-lang">
+      <button class="lang-btn active" onclick="switchLang('en')" style="background:rgba(255,255,255,.85);border:none;color:#1E3A5F;padding:5px 14px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;cursor:pointer;">EN</button>
+      <button class="lang-btn" onclick="switchLang('es')" style="background:transparent;border:none;color:rgba(255,255,255,.7);padding:5px 14px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;">ES</button>
+    </div>
+    <a href="https://www.ecsgtech.com/ecsgcontact_sales.html" class="nav-cta">✉ Contact Sales</a>
+  </div>
+</div>
+<script>
+function toggleMenu(){
+  var btn=document.getElementById('hamburger');
+  var menu=document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+</script>
 
     /* ─── HERO ─── */
     .page-hero {
