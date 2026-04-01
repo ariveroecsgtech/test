@@ -113,22 +113,76 @@ function switchLang(lang){
 </script>
 </head>
 <body class="lang-en">
-<nav style="background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:56px;position:sticky;top:0;z-index:100;font-family:'Barlow',sans-serif;">
-  <div style="display:flex;align-items:center;gap:32px;">
-    <a href="index.html" style="color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.3px;white-space:nowrap;">Home</a>
-    <a href="managed-services.html" style="color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.3px;white-space:nowrap;">Managed Services</a>
-    <a href="cloud-services.html" style="color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.3px;white-space:nowrap;">Cloud Services</a>
-    <a href="cybersecurity.html" style="background:#E53E3E;color:#fff;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.3px;padding:8px 16px;border-radius:4px;white-space:nowrap;">Cybersecurity</a>
-    <a href="ECSG_About.html" style="color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.3px;white-space:nowrap;">About Us</a>
+<style>
+.nav-main{background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:56px;position:sticky;top:0;z-index:200;font-family:'Barlow',sans-serif;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.3px;white-space:nowrap;}
+.nav-links a.active-page{background:#E53E3E;color:#fff;padding:8px 16px;border-radius:4px;font-weight:600;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-lang{display:flex;align-items:center;background:rgba(255,255,255,.12);border-radius:20px;overflow:hidden;}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;background:#2E75B6;color:#fff;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:9px 20px;border-radius:6px;white-space:nowrap;}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:210;}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .25s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:#1E3A5F;z-index:199;padding:16px 24px 20px;flex-direction:column;gap:0;box-shadow:0 8px 24px rgba(0,0,0,.3);}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;font-weight:500;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.nav-mobile-menu a.active-page{color:#FC8181;font-weight:700;}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);}
+.nav-mobile-bottom .nav-lang{background:rgba(255,255,255,.1);}
+.nav-mobile-bottom .nav-cta{font-size:12px;padding:8px 16px;}
+@media(max-width:768px){
+  .nav-main{padding:0 20px;}
+  .nav-links,.nav-right{display:none;}
+  .hamburger{display:flex;}
+}
+</style>
+<nav class="nav-main">
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="managed-services.html">Managed Services</a>
+    <a href="cloud-services.html">Cloud Services</a>
+    <a href="cybersecurity.html" class="active-page">Cybersecurity</a>
+    <a href="ECSG_About.html">About Us</a>
   </div>
-  <div style="display:flex;align-items:center;gap:12px;">
-    <div style="display:flex;align-items:center;background:rgba(255,255,255,.12);border-radius:20px;overflow:hidden;">
+  <div class="nav-right">
+    <div class="nav-lang">
       <button class="lang-btn active" onclick="switchLang('en')" style="background:rgba(255,255,255,.85);border:none;color:#1E3A5F;padding:5px 14px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;cursor:pointer;">EN</button>
       <button class="lang-btn" onclick="switchLang('es')" style="background:transparent;border:none;color:rgba(255,255,255,.7);padding:5px 14px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;">ES</button>
     </div>
-    <a href="https://www.ecsgtech.com/ecsgcontact_sales.html" style="display:inline-flex;align-items:center;gap:6px;background:#2E75B6;color:#fff;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:9px 20px;border-radius:6px;white-space:nowrap;">✉ Contact Sales</a>
+    <a href="https://www.ecsgtech.com/ecsgcontact_sales.html" class="nav-cta">✉ Contact Sales</a>
   </div>
+  <!-- Hamburger button (mobile only) -->
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- Mobile dropdown menu -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="managed-services.html">Managed Services</a>
+  <a href="cloud-services.html">Cloud Services</a>
+  <a href="cybersecurity.html" class="active-page">Cybersecurity</a>
+  <a href="ECSG_About.html">About Us</a>
+  <div class="nav-mobile-bottom">
+    <div class="nav-lang">
+      <button class="lang-btn active" onclick="switchLang('en')" style="background:rgba(255,255,255,.85);border:none;color:#1E3A5F;padding:5px 14px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;cursor:pointer;">EN</button>
+      <button class="lang-btn" onclick="switchLang('es')" style="background:transparent;border:none;color:rgba(255,255,255,.7);padding:5px 14px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;">ES</button>
+    </div>
+    <a href="https://www.ecsgtech.com/ecsgcontact_sales.html" class="nav-cta">✉ Contact Sales</a>
+  </div>
+</div>
+<script>
+function toggleMenu(){
+  var btn=document.getElementById('hamburger');
+  var menu=document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+</script>
 
 <header class="header">
   <div class="header-inner">
@@ -470,13 +524,4 @@ function switchLang(lang){
   <img src="assets/img/logo1_white.png" alt="ECSG" />
   <div class="footer-txt">
     Enterprise Cloud Solutions Group LLC<br>
-    26 Belden Ave, Norwalk, CT &nbsp;·&nbsp; <a href="mailto:info@ecsgtech.com">info@ecsgtech.com</a> &nbsp;·&nbsp; <a href="https://www.ecsgtech.com">www.ecsgtech.com</a>
-  </div>
-  <div class="footer-r">
-    Secure. Reliable. Human.<br>
-    © 2025 Enterprise Cloud Solutions Group LLC
-  </div>
-</footer>
-
-</body>
-</html>
+    26 Belden Ave, Norwalk, CT &nbsp;·&nbsp; <a href="/cdn-cgi/
