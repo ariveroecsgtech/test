@@ -24,24 +24,6 @@ body.lang-en .es-inline{display:none;} body.lang-en .en-inline{display:inline;}
 .lang-bar{background:var(--navy-deep);display:flex;justify-content:flex-end;align-items:center;padding:8px 40px;gap:8px;position:sticky;top:0;z-index:100;}
 .lang-btn{background:transparent;border:1.5px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);padding:4px 16px;border-radius:20px;font-family:"Barlow",sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
 .lang-btn.active,.lang-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff;}
-/* ─── HAMBURGER ─── */
-.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;transition:background .2s;}
-.nav-hamburger:hover{background:rgba(255,255,255,0.08);}
-.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,0.85);border-radius:2px;transition:all .28s ease;transform-origin:center;}
-.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
-.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.nav-mobile-menu{display:none;flex-direction:column;background:var(--navy-deep);border-top:1px solid rgba(255,255,255,0.08);padding:12px 20px 20px;gap:4px;position:relative;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.3);}
-.nav-mobile-menu.open{display:flex;}
-.nav-mobile-menu .nav-link{padding:11px 14px;font-size:15px;border-radius:6px;}
-.nav-mobile-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:14px;margin-top:8px;border-top:1px solid rgba(255,255,255,0.08);gap:12px;}
-.nav-mobile-bottom .nav-cta{flex:1;justify-content:center;}
-@media(max-width:768px){
-  .nav-links{display:none;}
-  .nav-right .nav-cta{display:none;}
-  .nav-right .lang-toggle, .nav-right .lang-btn{display:none;}
-  .nav-hamburger{display:flex;}
-}
 
 /* HEADER */
 .header{background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,#1a4570 100%);position:relative;overflow:hidden;}
@@ -193,9 +175,6 @@ body.lang-en .es-inline{display:none;} body.lang-en .en-inline{display:inline;}
 <div class="lang-bar">
   <button class="lang-btn active" onclick="switchLang('es')">🇪🇸 Español</button>
   <button class="lang-btn" onclick="switchLang('en')">🇺🇸 English</button>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
 </div>
 
 <!-- HEADER -->
@@ -212,7 +191,7 @@ body.lang-en .es-inline{display:none;} body.lang-en .en-inline{display:inline;}
     </div>
     <div class="header-contact">
       26 Belden Ave, Norwalk, CT<br>
-      <a href="/cdn-cgi/l/email-protection#6e070008012e0b0d1d091a0b0d06400d0103"><span class="__cf_email__" data-cfemail="cca5a2aaa38ca9afbfabb8a9afa4e2afa3a1">[email&#160;protected]</span></a><br>
+      <a href="mailto:info@ecsgtech.com">info@ecsgtech.com</a><br>
       <a href="https://www.ecsgtech.com">www.ecsgtech.com</a><br>
       <a class="cta-header-btn" href="https://www.ecsgtech.com/ecsgcontact_sales.html">
         <span class="es-inline">Contáctenos</span><span class="en-inline">Contact Us</span>
@@ -235,20 +214,6 @@ body.lang-en .es-inline{display:none;} body.lang-en .en-inline{display:inline;}
   <a class="nav-pill" href="#community"><span class="es-inline">Comunidad</span><span class="en-inline">Community</span></a>
   <a class="nav-pill" href="#lets-build"><span class="es-inline">Comencemos</span><span class="en-inline">Let's Build</span></a>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="nav-mobile-menu" id="navMobileMenu">
-  <a href="index.html" class="nav-link">Home</a>
-  <a href="managed-services.html" class="nav-link">Managed Services</a>
-  <a href="cloud-services.html" class="nav-link">Cloud Services</a>
-  <a href="cybersecurity.html" class="nav-link">Cybersecurity</a>
-  <a href="ECSG_About.html" class="nav-link active">About Us</a>
-  <div class="nav-mobile-bottom">
-    <button class="lang-btn" onclick="switchLang('es');closeMobileMenu()">🇪🇸 ES</button>
-    <button class="lang-btn" onclick="switchLang('en');closeMobileMenu()">🇺🇸 EN</button>
-    <a href="ecsgcontact_sales.html" class="nav-cta">✉ Contact Sales</a>
-  </div>
-</div>
 
 <!-- ═══ 1. WHO WE ARE ═══ -->
 <section id="who-we-are">
@@ -724,7 +689,7 @@ body.lang-en .es-inline{display:none;} body.lang-en .en-inline{display:inline;}
   <a class="cta-btn-large" href="https://www.ecsgtech.com/ecsgcontact_sales.html">
     <span class="es-inline">Contáctenos</span><span class="en-inline">Contact Us</span>
   </a>
-  <p class="cta-note-final">26 Belden Ave, Norwalk, CT &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#046d6a626b44616777637061676c2a676b69"><span class="__cf_email__" data-cfemail="41282f272e0124223226352422296f222e2c">[email&#160;protected]</span></a> &nbsp;·&nbsp; <a href="https://www.ecsgtech.com">www.ecsgtech.com</a></p>
+  <p class="cta-note-final">26 Belden Ave, Norwalk, CT &nbsp;·&nbsp; <a href="mailto:info@ecsgtech.com">info@ecsgtech.com</a> &nbsp;·&nbsp; <a href="https://www.ecsgtech.com">www.ecsgtech.com</a></p>
 </div>
 
 <!-- FOOTER -->
@@ -733,7 +698,7 @@ body.lang-en .es-inline{display:none;} body.lang-en .en-inline{display:inline;}
   <div class="footer-text">
     <strong style="color:rgba(255,255,255,0.7)">Enterprise Cloud Solutions Group LLC</strong><br>
     26 Belden Ave, Norwalk, CT 06850 &nbsp;·&nbsp;
-    <a href="/cdn-cgi/l/email-protection#5831363e37183d3b2b3f2c3d3b30763b3735"><span class="__cf_email__" data-cfemail="70191e161f3015130317041513185e131f1d">[email&#160;protected]</span></a> &nbsp;·&nbsp;
+    <a href="mailto:info@ecsgtech.com">info@ecsgtech.com</a> &nbsp;·&nbsp;
     <a href="https://www.ecsgtech.com">www.ecsgtech.com</a>
   </div>
   <div class="footer-right">
@@ -747,37 +712,16 @@ function switchLang(lang){
   if(lang==='en') document.body.classList.add('lang-en');
   else document.body.classList.remove('lang-en');
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn[onclick*="'"+lang+"'"]').forEach(b=>b.classList.add('active'));
-  localStorage.setItem('ecsg-lang', lang);
+  document.querySelector('.lang-btn[onclick*="'+lang+'"]').classList.add('active');
 }
-
-function closeMobileMenu(){
-  var m=document.getElementById('navMobileMenu');
-  var h=document.getElementById('navHamburger');
-  if(m){m.classList.remove('open');}
-  if(h){h.classList.remove('open');h.setAttribute('aria-expanded','false');}
-}
-
-document.addEventListener('DOMContentLoaded', function(){
-  /* Hamburger */
-  var hamburger=document.getElementById('navHamburger');
-  var mobileMenu=document.getElementById('navMobileMenu');
-  if(hamburger && mobileMenu){
-    hamburger.addEventListener('click', function(){
-      var isOpen=mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-    });
-    mobileMenu.querySelectorAll('.nav-link').forEach(function(link){
-      link.addEventListener('click', closeMobileMenu);
-    });
-  }
-
-  /* Default to Spanish (no lang-en class) */
-  document.body.classList.remove('lang-en');
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn[onclick*="\'es\'"]').forEach(b=>b.classList.add('active'));
-});
+// Active nav pill on scroll
+const pills = document.querySelectorAll('.nav-pill');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{ if(window.scrollY>=s.offsetTop-130) cur=s.id; });
+  pills.forEach(p=>{ p.classList.toggle('active', p.getAttribute('href')==='#'+cur); });
+},{passive:true});
 </script>
 </body>
 </html>
