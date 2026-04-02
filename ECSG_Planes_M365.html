@@ -559,9 +559,103 @@ html, body {
   }
 }
 
+
+/* ===== MOBILE-SAFE NAVBAR (NO HORIZONTAL OVERFLOW) ===== */
+html, body { width:100%; overflow-x:hidden; }
+
+.navbar-fixed{
+  position:sticky; top:0; z-index:1000;
+  background:#152C4A; 
+}
+
+.navbar-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.nav-left{ display:flex; align-items:center; gap:14px; }
+.nav-logo img{ height:34px; }
+
+/* Desktop links */
+.nav-links{ display:flex; gap:6px; }
+.nav-links a{
+  color:rgba(255,255,255,0.75);
+  text-decoration:none;
+  font-size:14px;
+  padding:6px 10px;
+  white-space:nowrap;
+}
+
+/* Right area always visible */
+.nav-right{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.lang-toggle{ display:flex; gap:4px; background:rgba(255,255,255,0.1); padding:2px; border-radius:20px; }
+.lang-btn{ background:none; border:none; color:#fff; padding:4px 10px; font-weight:700; cursor:pointer; border-radius:16px; }
+.lang-btn.active{ background:#2E75B6; }
+
+.nav-cta{ background:#2E75B6; color:#fff; text-decoration:none; padding:7px 14px; border-radius:6px; font-size:13px; font-weight:600; white-space:nowrap; }
+
+/* Hamburger */
+.hamburger{ display:none; flex-direction:column; gap:4px; background:none; border:none; cursor:pointer; }
+.hamburger span{ width:22px; height:2px; background:white; }
+
+/* Mobile menu */
+.mobile-menu{
+  display:none;
+  background:#152C4A;
+  padding:14px 16px;
+}
+.mobile-menu a{
+  display:block; color:white; text-decoration:none; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.mobile-menu.open{ display:block; }
+
+/* Responsive */
+@media(max-width:768px){
+  .nav-links{ display:none; }
+  .hamburger{ display:flex; }
+}
+
 </style>
 </head>
 <body>
+
+<header class="navbar-fixed">
+  <div class="navbar-inner">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="index.html" class="nav-logo"><img src="assets/img/logo1_white.png" alt="ECSG"></a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="managed-services.html">Managed Services</a>
+        <a href="cloud-services.html">Cloud Services</a>
+        <a href="cybersecurity.html">Cybersecurity</a>
+        <a href="ECSG_About.html">About Us</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active">EN</button>
+        <button class="lang-btn">ES</button>
+      </div>
+      <a href="ecsgcontact_sales.html" class="nav-cta">Contactar Ventas</a>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="managed-services.html">Managed Services</a>
+    <a href="cloud-services.html">Cloud Services</a>
+    <a href="cybersecurity.html">Cybersecurity</a>
+    <a href="ECSG_About.html">About Us</a>
+  </div>
+</header>
+
 <!-- ─── NAVBAR ─── -->
 <header id="navbar">
   <div class="nav-inner">
@@ -1158,5 +1252,14 @@ html, body {
   if(ham&&mob){ ham.addEventListener('click', function(){ mob.classList.toggle('open'); }); }
 })();
 </script>
+
+<script>
+(function(){
+  var b=document.getElementById('hamburgerBtn');
+  var m=document.getElementById('mobileMenu');
+  if(b&&m){ b.addEventListener('click',function(){ m.classList.toggle('open');}); }
+})();
+</script>
+
 </body>
 </html>
