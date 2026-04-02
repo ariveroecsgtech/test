@@ -582,54 +582,6 @@
     .sig-grid { grid-template-columns: 1fr; }
     .section { padding: 32px 20px; }
   }
-
-  @media (max-width: 768px) {
-    .navbar {
-      padding: 0 12px;
-      height: auto;
-      min-height: 56px;
-      flex-wrap: wrap;
-      gap: 4px;
-      padding-top: 6px;
-      padding-bottom: 6px;
-    }
-    .nav-links {
-      gap: 2px;
-      flex-wrap: wrap;
-    }
-    .nav-link {
-      font-size: 11px;
-      padding: 5px 7px;
-    }
-    .nav-right {
-      gap: 6px;
-    }
-    .lang-btn {
-      padding: 4px 9px;
-      font-size: 11px;
-    }
-    .nav-cta {
-      font-size: 11px;
-      padding: 6px 10px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .navbar {
-      padding: 6px 10px;
-    }
-    .nav-links {
-      gap: 1px;
-    }
-    .nav-link {
-      font-size: 10px;
-      padding: 4px 5px;
-    }
-    .nav-cta {
-      font-size: 10px;
-      padding: 5px 8px;
-    }
-  }
 </style>
 </head>
 <body>
@@ -662,7 +614,7 @@
     </div>
     <div class="header-contact">
       26 Belden Ave, Norwalk, CT<br>
-      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41282f272e0124223226352422296f222e2c">[email&#160;protected]</a><br>
+      info@ecsgtech.com<br>
       <a href="https://www.ecsgtech.com">www.ecsgtech.com</a>
     </div>
   </div>
@@ -914,7 +866,7 @@
         <a class="plan-select-btn standard" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=standard">Plan Standard</a>
         <a class="plan-select-btn premium" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=premium">Plan Premium</a>
       </div>
-      <div class="validity-note">¿Tiene preguntas? Escríbanos a <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="523b3c343d12373121352637313a7c313d3f">[email&#160;protected]</a> — respondemos en menos de 1 día hábil.</div>
+      <div class="validity-note">¿Tiene preguntas? Escríbanos a info@ecsgtech.com — respondemos en menos de 1 día hábil.</div>
     </div>
 
   </div><!-- /section -->
@@ -1165,7 +1117,7 @@
         <a class="plan-select-btn standard" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=standard">Standard Plan</a>
         <a class="plan-select-btn premium" href="https://www.ecsgtech.com/ecsgcontact_sales.html?plan=premium">Premium Plan</a>
       </div>
-      <div class="validity-note">Have questions? Email us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caa3a4aca58aafa9b9adbeafa9a2e4a9a5a7">[email&#160;protected]</a> — we respond within 1 business day.</div>
+      <div class="validity-note">Have questions? Email us at info@ecsgtech.com — we respond within 1 business day.</div>
     </div>
 
   </div><!-- /section -->
@@ -1176,7 +1128,7 @@
   <div class="footer-text">
     <strong style="color:rgba(255,255,255,0.7)">Enterprise Cloud Solutions Group LLC</strong><br>
     26 Belden Ave, Norwalk, CT 06850 &nbsp;·&nbsp;
-    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="20494e464f6045435347544543480e434f4d">[email&#160;protected]</a> &nbsp;·&nbsp;
+    info@ecsgtech.com &nbsp;·&nbsp;
     <a href="https://www.ecsgtech.com">www.ecsgtech.com</a>
   </div>
   <div class="footer-right">
@@ -1184,10 +1136,27 @@
     © 2025 ECSG LLC. All rights reserved.
   </div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function() {
   function switchLang(lang) {
     document.querySelectorAll('.lang-section').forEach(function(s) { s.classList.remove('active'); });
     document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
     var section = document.getElementById('lang-' + lang);
-    if (section) section.classLi
+    if (section) section.classList.add('active');
+    document.querySelectorAll('.lang-btn[data-lang="' + lang + '"]').forEach(function(b) { b.classList.add('active'); });
+    var sub = document.getElementById('hdr-sub');
+    if (sub) {
+      sub.textContent = lang === 'en'
+        ? 'Managed IT · Cloud · Cybersecurity · Projects'
+        : 'TI Gestionada · Cloud · Ciberseguridad · Proyectos';
+    }
+  }
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      switchLang(this.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body>
+</html>
