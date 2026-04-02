@@ -112,6 +112,70 @@
     gap: 6px;
   }
   .nav-cta:hover { background: var(--blue-light); }
+
+  /* ─── HAMBURGER ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .nav-hamburger:hover { background: rgba(255,255,255,0.08); }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 2px;
+    transition: all 0.28s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--navy-deep);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 12px 20px 20px;
+    gap: 4px;
+    position: sticky;
+    top: 60px;
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu .nav-link {
+    padding: 11px 14px;
+    font-size: 15px;
+    border-radius: 6px;
+  }
+  .nav-mobile-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    margin-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    gap: 12px;
+  }
+  .nav-mobile-bottom .nav-cta { flex: 1; justify-content: center; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-right .nav-cta { display: none; }
+    .nav-right .lang-toggle { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+
   /* ─── LOGO BANNER ─── */
   .logo-banner {
     background: var(--navy-deep);
@@ -574,8 +638,27 @@
       <button class="lang-btn" data-lang="es">ES</button>
     </div>
     <a href="ecsgcontact_sales.html" class="nav-cta">✉ Contact Sales</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="managed-services.html" class="nav-link">Managed Services</a>
+  <a href="cloud-services.html" class="nav-link active">Cloud Services</a>
+  <a href="cybersecurity.html" class="nav-link">Cybersecurity</a>
+  <a href="ECSG_About.html" class="nav-link">About Us</a>
+  <div class="nav-mobile-bottom">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+    <a href="ecsgcontact_sales.html" class="nav-cta">✉ Contact Sales</a>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header class="header">
@@ -800,7 +883,7 @@
       <div class="cta-title">¿Listo para migrar a <span>Azure</span>?</div>
       <p class="cta-subtitle">Habla con ECSG: diseñamos, migramos y optimizamos tu infraestructura en Azure a tu medida. Sin compromisos, con resultados.</p>
       <a class="cta-btn" href="https://www.ecsgtech.com/ecsgcontact_sales.html?service=azure">Contactar a un Especialista</a>
-      <p class="cta-note">¿Tienes preguntas? Escríbenos a <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cda4a3aba28da8aebeaab9a8aea5e3aea2a0">[email&#160;protected]</a> — respondemos en menos de 1 día hábil.</p>
+      <p class="cta-note">¿Tienes preguntas? Escríbenos a <a href="mailto:info@ecsgtech.com">info@ecsgtech.com</a> — respondemos en menos de 1 día hábil.</p>
     </div>
 
   </div><!-- /section -->
@@ -1036,13 +1119,14 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+
+  /* ── Language switch ── */
   function switchLang(lang) {
     document.querySelectorAll('.lang-section').forEach(function(s) { s.classList.remove('active'); });
     document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
     var section = document.getElementById('lang-' + lang);
     if (section) section.classList.add('active');
-    var btn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
-    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.lang-btn[data-lang="' + lang + '"]').forEach(function(b) { b.classList.add('active'); });
     localStorage.setItem('ecsg-lang', lang);
   }
 
@@ -1052,9 +1136,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Iniciar con idioma guardado o inglés por defecto
   var saved = localStorage.getItem('ecsg-lang') || 'en';
   switchLang(saved);
+
+  /* ── Hamburger ── */
+  var hamburger = document.getElementById('navHamburger');
+  var mobileMenu = document.getElementById('navMobileMenu');
+
+  hamburger.addEventListener('click', function() {
+    var isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  mobileMenu.querySelectorAll('.nav-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
 });
 </script>
 </body>
