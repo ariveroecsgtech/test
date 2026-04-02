@@ -35,87 +35,6 @@
   }
 
   /* ─── NAVBAR ─── */
-  .navbar {
-    background: var(--navy-deep);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    height: 60px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-     /* ✅ AÑADIR ESTO */
-  max-width: 100%;
-  overflow-x: hidden;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .nav-link {
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 14px;
-    border-radius: 6px;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
-  .nav-link.active { color: #fff; background: rgba(46,117,182,0.35); font-weight: 600; }
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .lang-toggle {
-    display: flex;
-    align-items: center;
-    background: rgba(255,255,255,0.08);
-    border-radius: 20px;
-    overflow: hidden;
-    padding: 2px;
-    gap: 2px;
-  }
-  .lang-btn {
-    background: transparent;
-    border: none;
-    color: rgba(255,255,255,0.6);
-    padding: 4px 14px;
-    border-radius: 18px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .lang-btn.active {
-    background: var(--blue);
-    color: #fff;
-  }
-  .lang-btn:hover:not(.active) { color: #fff; }
-  .nav-cta {
-    background: var(--blue);
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 18px;
-    border-radius: 6px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .nav-cta:hover { background: var(--blue-light); }
 
   /* ─── HEADER ─── */
   .header {
@@ -590,22 +509,7 @@
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
-  <div class="nav-links">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="managed-services.html" class="nav-link">Managed Services</a>
-    <a href="cloud-services.html" class="nav-link active">Cloud Services</a>
-    <a href="cybersecurity.html" class="nav-link">Cybersecurity</a>
-    <a href="ECSG_About.html" class="nav-link">About Us</a>
-  </div>
-  <div class="nav-right">
-    <div class="lang-toggle">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="es">ES</button>
-    </div>
-    <a href="ecsgcontact_sales.html" class="nav-cta">✉ Contact Sales</a>
-  </div>
-</nav>
+
 
 <!-- HEADER -->
 <header class="header">
