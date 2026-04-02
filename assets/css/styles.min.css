@@ -35325,9 +35325,3 @@ input.main-search-input::placeholder {
 
 /* # sourceMappingURL=main.css.map */
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 16px;
-  }
-}
-
